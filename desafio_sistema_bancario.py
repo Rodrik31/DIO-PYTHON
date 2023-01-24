@@ -38,7 +38,7 @@ while True:
             print("Erro, digite um valor positivo.")
         elif saque > saldo:
             print("Erro, o valor do saque é maior que saldo existente.")
-        elif numero_saques > 2:
+        elif numero_saques == LIMITE_SAQUES:
             print("O valor não pode ser sacado.\nLimite diário de saques atingindo.")
         else:
             saldo -= saque
