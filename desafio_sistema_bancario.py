@@ -37,8 +37,8 @@ while True:
 
     elif opcao == "e":
         limpar()
-        extrato += f"\nSaldo: R$ {saldo:.2f}"
-        print(extrato)
+        
+        print(extrato + f"\nSaldo: R$ {saldo:.2f}")
 
 
     
