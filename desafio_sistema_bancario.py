@@ -1,6 +1,7 @@
 import os
 def limpar():
     os.system('cls') or None
+limpar()
 
 menu = """
 [d] Depositar
@@ -21,17 +22,23 @@ while True:
 
     if opcao == "d":
         limpar()
-        print('deposito realizado')
+        deposito = float(input("Digite o valor a ser depositado: "))
+        if deposito <= 0:
+            print("Erro, digite um valor positivo.")
+        else:
+            saldo += deposito
+            extrato += f"Depósito: R$ {deposito:.2f}\n"
+           
 
     elif opcao == "s":
         limpar()
         print('saque realizado')
 
 
-
     elif opcao == "e":
         limpar()
-        print('extrato realizado')
+        extrato += f"\nSaldo: R$ {saldo:.2f}"
+        print(extrato)
 
 
     
