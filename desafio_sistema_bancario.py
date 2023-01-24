@@ -22,7 +22,7 @@ while True:
 
     if opcao == "d":
         limpar()
-        deposito = float(input("Digite o valor a ser depositado: "))
+        deposito = float(input("Digite o valor para depositar: "))
         if deposito <= 0:
             print("Erro, digite um valor positivo.")
         else:
@@ -32,13 +32,28 @@ while True:
 
     elif opcao == "s":
         limpar()
-        print('saque realizado')
+        saque = float(input("Digite um valor para sacar:" ))
+        if saque > 500:
+            print(f"Saque recusado. Limite de saque: R$ {limite:.2f}")
+        elif saque <= 0:
+            print("Erro, digite um valor positivo.")
+        elif saque > saldo:
+            print("Erro, o valor do saque é maior que saldo existente.")
+        elif numero_saques > 2:
+            print("O valor não pode ser sacado.\nLimite diário de saques atingindo.")
+        else:
+            saldo -= saque
+            numero_saques +=1
+            extrato += f"Saque: R$ {saque:.2f}\n"
+
 
 
     elif opcao == "e":
         limpar()
-        
-        print(extrato + f"\nSaldo: R$ {saldo:.2f}")
+        if extrato:
+            print(extrato + f"\nSaldo: R$ {saldo:.2f}")
+        else:
+            print("Não foram realizadas movimentações.")
 
 
     
