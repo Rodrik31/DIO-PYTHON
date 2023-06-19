@@ -31,6 +31,26 @@ def saque(*, saldo, valor, extrato, limite, numero_saque, limite_saque):
 
     return saldo, extrato, numero_saque
 
+def deposito(saldo, valor, extrato, /):
+    if valor <= 0:
+        print("Erro, digite um valor positivo.")
+    else:
+        saldo += valor
+        extrato += f"Depósito: R$ {valor:.2f}\n" 
+        limpar()
+        print("Deposito realizado com sucesso.")         
+
+    return saldo, extrato
+
+def exibir_extrato(saldo, /, *, extrato):
+    limpar()
+    if extrato:
+        print(extrato + f"\nSaldo: R$ {saldo:.2f}")
+    else:
+        print("Não foram realizadas movimentações.") 
+    return extrato
+
+
 def main():    
     saldo = 0
     valor = 0
@@ -45,13 +65,8 @@ def main():
 
         if opcao == "d":
             limpar()
-            deposito = float(input("Digite o valor para depositar: "))
-            if deposito <= 0:
-                print("Erro, digite um valor positivo.")
-            else:
-                saldo += deposito
-                extrato += f"Depósito: R$ {deposito:.2f}\n"           
-
+            valor = float(input("Digite o valor para depositar: "))
+            saldo, extrato = deposito(saldo, valor, extrato)            
         elif opcao == "s":
             limpar()
             valor = float(input("Digite um valor para sacar:" ))
@@ -62,21 +77,13 @@ def main():
                                                     limite=limite, 
                                                     numero_saque=numero_saques, 
                                                     limite_saque=LIMITE_SAQUES
-                                                )
-            
-
+                                                )            
         elif opcao == "e":
-            limpar()
-            if extrato:
-                print(extrato + f"\nSaldo: R$ {saldo:.2f}")
-            else:
-                print("Não foram realizadas movimentações.")
-        
+            extrato = exibir_extrato(saldo, extrato=extrato)       
         elif opcao == "q":
             input("Obrigado por utilizar nossos sistemas.")
             limpar()        
             break
-
         else:
             limpar()
             print("Operação inválida, por favor selecione novamente a operação desejada.")
