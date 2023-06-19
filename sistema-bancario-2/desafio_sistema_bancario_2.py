@@ -8,6 +8,7 @@ def menu():
     [d] Depositar
     [s] Sacar
     [e] Extrato
+    [c] Cadastrar usuário
     [q] Sair
     => """)
     opcao = input()
@@ -50,12 +51,19 @@ def exibir_extrato(saldo, /, *, extrato):
         print("Não foram realizadas movimentações.") 
     return extrato
 
+def cadastrar_usuario(CPF):
+    return usuarios
+
+def criar_conta_corrente(usuario):
+    return contas_correntes
 
 def main():    
     saldo = 0
     valor = 0
     limite = 500
     extrato = ""
+    usuarios = []
+    contas = []
     numero_saques = 0
     LIMITE_SAQUES = 3
 
@@ -79,7 +87,10 @@ def main():
                                                     limite_saque=LIMITE_SAQUES
                                                 )            
         elif opcao == "e":
-            extrato = exibir_extrato(saldo, extrato=extrato)       
+            extrato = exibir_extrato(saldo, extrato=extrato)
+        elif opcao == "c":
+            usuario = input()
+            usuarios = cadastrar_usuario(usuario)     
         elif opcao == "q":
             input("Obrigado por utilizar nossos sistemas.")
             limpar()        
