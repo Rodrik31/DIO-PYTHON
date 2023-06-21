@@ -78,7 +78,7 @@ def cadastrar_usuario(*, nome, usuarios, contas):
     return usuarios
 
 def filtrar_usuarios(CPF, usuarios):
-    if len(CPF) is not 11:
+    if len(CPF) != 11:
         print("Digite um CPF válido.")
         return False
     else:
@@ -86,6 +86,7 @@ def filtrar_usuarios(CPF, usuarios):
             if usuario["CPF"] == CPF:
                 print("Usuário já cadastrado com o CPF fornecido.")
                 return False
+        return True
 
 
 def criar_conta_corrente(usuario, contas):
